@@ -18,7 +18,7 @@ const ChefCard = ({ chefData }) => {
         />
       </div>
       <div className="p-4">
-        <h2 className="text-2xl font-semibold mb-2 text-center">Person Name</h2>
+        <h2 className="text-2xl font-semibold mb-2 text-center">{name}</h2>
         <p className="text-gray-700 mb-4">
           <b>Likes :</b> {(likes / 1000).toFixed(1)}k
         </p>

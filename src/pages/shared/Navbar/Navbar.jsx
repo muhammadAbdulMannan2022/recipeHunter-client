@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaUserCircle } from "react-icons/fa";
 import { HiX } from "react-icons/hi";
 import { Link, NavLink } from "react-router-dom";
 
@@ -34,8 +34,15 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <div className="">
+        <div className="flex gap-1">
+          <div style={{ width: "40px", height: "40px" }}>
+            <FaUserCircle
+              className="text-white"
+              style={{ width: "40px", height: "40px" }}
+            />
+          </div>
           <button className="bg-white px-3 py-2 rounded hover:cursor-pointer">
+            <div></div>
             <Link to="/login">Login</Link>
           </button>
         </div>

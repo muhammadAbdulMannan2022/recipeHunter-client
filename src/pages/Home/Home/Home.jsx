@@ -2,6 +2,9 @@ import React from "react";
 import HomeHeader from "../HomeHeader/HomeHeader";
 import { useLoaderData } from "react-router-dom";
 import ChefCard from "../../ChefCard/ChefCard";
+import Footer from "../../shared/Footer/Footer";
+import ContactUs from "../ContactUs/ContactUs";
+import Galary from "../Galary/Galary";
 
 const Home = () => {
   const chefs = useLoaderData();
@@ -14,10 +17,17 @@ const Home = () => {
 
         <div className="w-full flex justify-center gap-3 flex-wrap">
           {chefs.map((chef) => (
-            <ChefCard chefData={chef} />
+            <ChefCard key={chef.id} chefData={chef} />
           ))}
         </div>
+        <div>
+          <Galary />
+        </div>
+        <div>
+          <ContactUs />
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

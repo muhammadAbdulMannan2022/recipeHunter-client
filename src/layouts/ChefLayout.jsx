@@ -3,6 +3,7 @@ import Navbar from "../pages/shared/Navbar/Navbar";
 import ChefHeaderCard from "../pages/ChefCard/ChefHeaderCard";
 import { useLoaderData } from "react-router-dom";
 import RecipeCard from "../pages/ChefCard/RecipeCard/RecipeCard";
+import Footer from "../pages/shared/Footer/Footer";
 
 const ChefLayout = () => {
   const data = useLoaderData();
@@ -25,11 +26,12 @@ const ChefLayout = () => {
           <h1 className="text-center text-4xl mb-10">Recipes</h1>
           <div className="w-full flex flex-wrap justify-center gap-3">
             {data[0].map((cardData) => (
-              <RecipeCard cardData={cardData} />
+              <RecipeCard key={cardData.recipe_id} cardData={cardData} />
             ))}
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
