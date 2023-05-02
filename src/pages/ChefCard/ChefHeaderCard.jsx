@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 const ChefHeaderCard = () => {
   const chefData = useLoaderData();
   const { id, experience, image, name, likes, numRecipes } = chefData[1];
-  console.log(chefData[1]);
+  // console.log(chefData[1]);
   return (
     <div className="w-4/5">
       <div className="bg-white w-4/5 p-4 flex justify-between sm:flex-row flex-col-reverse gap-4 sm:gap-0">

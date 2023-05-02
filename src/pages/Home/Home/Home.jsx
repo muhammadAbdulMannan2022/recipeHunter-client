@@ -12,7 +12,7 @@ const Home = () => {
       <div className="container flex items-center justify-center flex-col py-5">
         <h1 className="text-4xl mb-4 ">Our special Chefs</h1>
 
-        <div className="w-full flex justify-between flex-wrap">
+        <div className="w-full flex justify-center gap-3 flex-wrap">
           {chefs.map((chef) => (
             <ChefCard chefData={chef} />
           ))}
