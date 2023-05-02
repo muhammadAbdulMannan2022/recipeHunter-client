@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/Authprovider";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
   const { signupWithGoogle, signupWithEmailPassword, signOut } =
     useContext(AuthContext);
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +20,8 @@ const Signup = () => {
     setEmail("");
     setName("");
     setPassword("");
+    setPhotoUrl("");
+    navigate("/");
   };
   const googleSignin = () => {
     signupWithGoogle();

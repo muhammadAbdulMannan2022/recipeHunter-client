@@ -21,7 +21,6 @@ const Authprovider = ({ children }) => {
   //   auth state heldle
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("auth State changed", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
@@ -33,7 +32,6 @@ const Authprovider = ({ children }) => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((userCradi) => {
-        console.log(userCradi.user);
         setLoading(false);
       })
       .catch((err) => {
@@ -61,7 +59,6 @@ const Authprovider = ({ children }) => {
     setLoading(true);
     signInWithPopup(auth, githubProvider)
       .then((userCradi) => {
-        console.log(userCradi.user);
         setUser(false);
       })
       .catch((err) => {
