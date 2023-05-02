@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaBars, FaUserCircle } from "react-icons/fa";
 import { HiX } from "react-icons/hi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { AuthContext } from "../../../providers/Authprovider";
 
 const Navbar = () => {
+  const logcation = useLocation();
+  const { logOut, user, loading } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(null);
   useEffect(() => {
     window.onscroll = () => {
@@ -16,7 +19,13 @@ const Navbar = () => {
   }, []);
   return (
     <div
-      style={{ background: `rgba(0,0,0,${scrolled})` }}
+      style={{
+        background: `${
+          location.pathname === "/1/signup" || logcation.pathname === "/1/login"
+            ? "rgb(0,0,0)"
+            : `rgba(0,0,0,${scrolled})`
+        }`,
+      }}
       className={`lg:px-16 z-20 px-4 bg-transparent py-2 flex items-center justify-between sticky top-0`}
     >
       <div className="logo">
@@ -36,14 +45,26 @@ const Navbar = () => {
 
         <div className="flex gap-1">
           <div style={{ width: "40px", height: "40px" }}>
-            <FaUserCircle
-              className="text-white"
-              style={{ width: "40px", height: "40px" }}
-            />
+            {loading ? (
+              ""
+            ) : user?.photoURL ? (
+              <img
+                style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+                src={user?.photoURL}
+              />
+            ) : (
+              <FaUserCircle
+                className="text-white"
+                style={{ width: "40px", height: "40px" }}
+              />
+            )}
           </div>
           <button className="bg-white px-3 py-2 rounded hover:cursor-pointer">
-            <div></div>
-            <Link to="/login">Login</Link>
+            {user ? (
+              <span onClick={logOut}>Log out</span>
+            ) : (
+              <Link to="/1/login">Login</Link>
+            )}
           </button>
         </div>
       </div>

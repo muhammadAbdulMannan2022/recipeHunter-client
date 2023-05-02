@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/Authprovider";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
-  const { signupWithGoogle } = useContext(AuthContext);
+  const { signupWithGoogle, signupWithEmailPassword, signOut } =
+    useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,9 +14,17 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, password, url } = e.target;
+    signupWithEmailPassword(email.value, password.value, name.value, url.value);
+    setName("");
+    setEmail("");
+    setName("");
+    setPassword("");
   };
   const googleSignin = () => {
     signupWithGoogle();
+  };
+  const githubSignin = () => {
+    signOut();
   };
   return (
     <div className="flex justify-center items-center h-full py-10 bg-blue-200">
@@ -109,6 +119,7 @@ const Signup = () => {
             login with google
           </button>
           <button
+            onClick={githubSignin}
             className="bg-black w-full mt-3 text-white border shadow-md font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
