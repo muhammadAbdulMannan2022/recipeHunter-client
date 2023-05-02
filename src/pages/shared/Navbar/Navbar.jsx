@@ -5,7 +5,6 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(null);
-  const [navOpen, setNavOpen] = useState(false);
   useEffect(() => {
     window.onscroll = () => {
       if (window.pageYOffset > 100) {
@@ -18,19 +17,15 @@ const Navbar = () => {
   return (
     <div
       style={{ background: `rgba(0,0,0,${scrolled})` }}
-      className={`lg:px-16 px-4 bg-transparent py-2 flex items-center justify-between sticky top-0`}
+      className={`lg:px-16 z-20 px-4 bg-transparent py-2 flex items-center justify-between sticky top-0`}
     >
       <div className="logo">
-        <h1 className="text-3xl text-white" title="easy food">
+        <h1 className="md:text-3xl text-2xl text-white" title="easy food">
           簡単料理
         </h1>
       </div>
-      <div
-        className={`md:flex md:flex-row md:relative md:top-0 grow items-center justify-between flex-col absolute top-12 -z-10 right-0 w-full sm:w-1/2 p-4 bg-black h-screen gap-3 ${
-          navOpen ? "translate-x-0" : "translate-x-full"
-        } transition-all`}
-      >
-        <div className="flex md:flex-row flex-col gap-3 m-auto">
+      <div className={`flex grow items-center justify-between`}>
+        <div className="flex gap-3 m-auto">
           <NavLink className="text-xl text-white" to="/">
             Home
           </NavLink>
@@ -39,37 +34,13 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <div className="md:mt-0 mt-3">
+        <div className="">
           <button className="bg-white px-3 py-2 rounded hover:cursor-pointer">
             <Link to="/login">Login</Link>
           </button>
         </div>
       </div>
-      <div>
-        {navOpen ? (
-          <HiX
-            onClick={() => setNavOpen(!navOpen)}
-            style={{
-              color: "white",
-              height: "40px",
-              width: "40px",
-              cursor: "pointer",
-            }}
-            className="md:hidden block"
-          />
-        ) : (
-          <FaBars
-            onClick={() => setNavOpen(!navOpen)}
-            style={{
-              color: "white",
-              height: "40px",
-              width: "40px",
-              cursor: "pointer",
-            }}
-            className="md:hidden sm:block"
-          />
-        )}
-      </div>
+      <div></div>
     </div>
   );
 };
