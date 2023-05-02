@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/Authprovider";
 
 const Signup = () => {
+  const { signupWithGoogle } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +12,9 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, password, url } = e.target;
+  };
+  const googleSignin = () => {
+    signupWithGoogle();
   };
   return (
     <div className="flex justify-center items-center h-full py-10 bg-blue-200">
@@ -97,6 +102,7 @@ const Signup = () => {
         </div>
         <div>
           <button
+            onClick={googleSignin}
             className="bg-white w-full mt-3 text-black border shadow-md font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
