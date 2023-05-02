@@ -8,7 +8,6 @@ import Galary from "../Galary/Galary";
 
 const Home = () => {
   const chefs = useLoaderData();
-  console.log(chefs);
   return (
     <div className="w-full flex flex-col items-center">
       <HomeHeader />

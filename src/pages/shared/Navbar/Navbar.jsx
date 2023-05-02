@@ -51,6 +51,12 @@ const Navbar = () => {
               <img
                 style={{ width: "40px", height: "40px", borderRadius: "50%" }}
                 src={user?.photoURL}
+                alt={
+                  <FaUserCircle
+                    className="text-white"
+                    style={{ width: "40px", height: "40px" }}
+                  />
+                }
               />
             ) : (
               <FaUserCircle

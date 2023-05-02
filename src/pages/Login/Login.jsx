@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/Authprovider";
 
 const Login = () => {
   const { loginWithEmailPassword } = useContext(AuthContext);
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  console.log(location);
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = e.target;
@@ -14,6 +17,7 @@ const Login = () => {
     loginWithEmailPassword(email.value, password.value);
     setEmail("");
     setPassword("");
+    navigate(from);
   };
   return (
     <div className="flex justify-center items-center my-auto py-10 bg-gray-100">
