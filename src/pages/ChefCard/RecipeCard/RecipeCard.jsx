@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { toast } from "react-hot-toast";
+import { FaHeart, FaStar } from "react-icons/fa";
 
 const RecipeCard = ({ cardData }) => {
   const [showDot, setShowDot] = useState(true);
+  const [isFabarit, setIsFabarit] = useState(false);
   const [fullRecipe, setFullRecipe] = useState([]);
   const [slicedRecipeIng, setSlicedRecipeIng] = useState([]);
   const [slicedRecipeMethod, setSlicedRecipeMethod] = useState([]);
@@ -46,6 +48,25 @@ const RecipeCard = ({ cardData }) => {
             See full recipe
           </button>
           <span className="flex items-center gap-1">
+            {isFabarit ? (
+              <button disabled={true} style={{ pointerEvents: "none" }}>
+                <FaHeart
+                  onClick={() => {
+                    setIsFabarit(!isFabarit);
+                    toast.success("removed from favorite");
+                  }}
+                  className="text-red-600 me-2"
+                />
+              </button>
+            ) : (
+              <FaHeart
+                onClick={(e) => {
+                  toast.success("added in Favorite");
+                  setIsFabarit(!isFabarit);
+                }}
+                className="text-gray-900 me-2"
+              />
+            )}
             <FaStar className="text-yellow-500" /> {rating}
           </span>
         </div>

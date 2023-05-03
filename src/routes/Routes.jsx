@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Home from "../pages/Home/Home/Home";
 import ChefLayout from "../layouts/ChefLayout";
@@ -6,6 +6,8 @@ import LoginSignupLayout from "../layouts/LoginSignupLayout";
 import Signup from "../pages/Signup/Signup";
 import Login from "../pages/Login/Login";
 import PrivateRoute from "../pages/Private/PrivateRoute";
+import Error404, { Errors } from "../pages/Error/Error404";
+import Blog from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -20,13 +22,15 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/chef/:id",
+    path: `/chef/:id`,
     element: (
       <PrivateRoute>
         <ChefLayout />
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/chefs/${params.id}`),
+    loader: ({ params }) => {
+      return fetch(`http://localhost:5000/chefs/${params.id}`);
+    },
   },
   {
     path: "/1/",
@@ -41,6 +45,14 @@ const router = createBrowserRouter([
         element: <Login />,
       },
     ],
+  },
+  {
+    path: "/blog",
+    element: <Blog />,
+  },
+  {
+    path: "*",
+    element: <Errors />,
   },
 ]);
 export default router;

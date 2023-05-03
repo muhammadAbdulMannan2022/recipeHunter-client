@@ -60,22 +60,28 @@ const Navbar = () => {
         <div className="flex gap-1">
           <div
             onClick={handleButtonClick}
-            style={{ width: "40px", height: "40px", cursor: "pointer" }}
+            title={`${user?.displayName}`}
+            className={`${user && "bg-white"}`}
+            style={{
+              width: "40px",
+              height: "40px",
+              cursor: "pointer",
+              borderRadius: "50%",
+            }}
           >
-            {loading ? (
-              ""
-            ) : user?.photoURL ? (
-              <img
-                style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-                src={user?.photoURL}
-                alt={user?.displayName}
-              />
-            ) : (
-              <FaUserCircle
-                className="text-white"
-                style={{ width: "40px", height: "40px" }}
-              />
-            )}
+            {loading
+              ? ""
+              : user?.photoURL && (
+                  <img
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "50%",
+                    }}
+                    src={user?.photoURL}
+                    alt={user?.displayName}
+                  />
+                )}
           </div>
           <button className="bg-white px-3 py-2 rounded hover:cursor-pointer">
             {user ? (

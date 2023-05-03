@@ -22,7 +22,7 @@ const ChefHeaderCard = () => {
           <div className="text-4xl">{name}</div>
           <p className="my-4">
             Chef Takeshi Nakamura is a highly skilled Japanese chef with over{" "}
-            <b>{experience}</b> years of experience in crafting authentic
+            <b>{experience} years of experience</b> in crafting authentic
             Japanese cuisine.
           </p>
         </div>
