@@ -23,6 +23,7 @@ const Authprovider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      // console.log(currentUser);
     });
     return () => {
       unsubscribe();
@@ -30,40 +31,15 @@ const Authprovider = ({ children }) => {
   }, []);
   const signupWithGoogle = () => {
     setLoading(true);
-    signInWithPopup(auth, googleProvider)
-      .then((userCradi) => {
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return signInWithPopup(auth, googleProvider);
   };
-  const signupWithEmailPassword = (email, password, displayName, photoURL) => {
+  const signupWithEmailPassword = (email, password) => {
     setLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        updateProfile(user, { displayName, photoURL });
-        setLoading(false);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(error);
-        // ..
-      });
+    return createUserWithEmailAndPassword(auth, email, password);
   };
   const signupWithGithub = () => {
     setLoading(true);
-    signInWithPopup(auth, githubProvider)
-      .then((userCradi) => {
-        setUser(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return signInWithPopup(auth, githubProvider);
   };
   const logOut = () => {
     signOut(auth)
@@ -76,21 +52,12 @@ const Authprovider = ({ children }) => {
   };
   const loginWithEmailPassword = (email, password) => {
     setLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        setLoading(false);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    return signInWithEmailAndPassword(auth, email, password);
   };
   const AuthInfo = {
     user,
     loading,
+    setLoading,
     logOut,
     signupWithGoogle,
     signupWithGithub,

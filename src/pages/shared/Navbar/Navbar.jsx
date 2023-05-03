@@ -42,7 +42,6 @@ const Navbar = () => {
             Blog
           </NavLink>
         </div>
-
         <div className="flex gap-1">
           <div style={{ width: "40px", height: "40px" }}>
             {loading ? (
@@ -51,12 +50,7 @@ const Navbar = () => {
               <img
                 style={{ width: "40px", height: "40px", borderRadius: "50%" }}
                 src={user?.photoURL}
-                alt={
-                  <FaUserCircle
-                    className="text-white"
-                    style={{ width: "40px", height: "40px" }}
-                  />
-                }
+                alt={user?.displayName}
               />
             ) : (
               <FaUserCircle
