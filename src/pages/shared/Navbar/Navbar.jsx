@@ -3,8 +3,23 @@ import { FaBars, FaUserCircle } from "react-icons/fa";
 import { HiX } from "react-icons/hi";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../providers/Authprovider";
+import Modal from "../Modal/Modal";
 
 const Navbar = () => {
+  // for model
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Open the modal when the button is clicked
+  function handleButtonClick() {
+    setIsModalOpen(true);
+  }
+
+  // Close the modal when the user clicks outside of it or the close button
+  function handleClose() {
+    setIsModalOpen(false);
+  }
+
+  //
   const logcation = useLocation();
   const { logOut, user, loading } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(null);
@@ -43,7 +58,10 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className="flex gap-1">
-          <div style={{ width: "40px", height: "40px" }}>
+          <div
+            onClick={handleButtonClick}
+            style={{ width: "40px", height: "40px", cursor: "pointer" }}
+          >
             {loading ? (
               ""
             ) : user?.photoURL ? (
@@ -68,7 +86,10 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <div></div>
+      <div>
+        <div id="modal-root"></div>
+        <Modal isOpen={isModalOpen} onClose={handleClose} />
+      </div>
     </div>
   );
 };

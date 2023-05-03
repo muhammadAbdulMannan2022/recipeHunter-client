@@ -4,6 +4,7 @@ import ChefHeaderCard from "../pages/ChefCard/ChefHeaderCard";
 import { useLoaderData } from "react-router-dom";
 import RecipeCard from "../pages/ChefCard/RecipeCard/RecipeCard";
 import Footer from "../pages/shared/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const ChefLayout = () => {
   const data = useLoaderData();
@@ -32,6 +33,7 @@ const ChefLayout = () => {
         </div>
       </div>
       <Footer />
+      <Toaster />
     </>
   );
 };
