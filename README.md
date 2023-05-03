@@ -18,5 +18,6 @@ The project includes the following features:
 
 To use this project, follow these steps:
 
-1. Open a web browser and go to `https://b7a10-assignment-recipe.web.app/`
-2. thats all
+1. Open a web browser and go to [https://b7a10-assignment-recipe.web.app/](https://b7a10-assignment-recipe.web.app/)
+2. ## [go to easy cooking](https://classroom.github.com/a/ym3y0_ro)
+3. thats all
